@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bean & Chai Café</title>
+
+  <style>
+    /* =========================
+       RESET & GLOBAL
+    ========================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f3ed;
+      color: #26352b;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 30px;
+      background: #006241;
+      color: white;
+      font-weight: bold;
+      border: 2px solid #006241;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #004d33;
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      color: #173d2b;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #777;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    header {
+      background: white;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    nav {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #006241;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: #006241;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #006241;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 620px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 48, 32, 0.94),
+          rgba(0, 48, 32, 0.65),
+          rgba(0, 0, 0, 0.15)
+        ),
+        url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=80")
+        center/cover;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero-content span {
+      color: #d7a85b;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(45px, 7vw, 78px);
+      line-height: 1.05;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      max-width: 550px;
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+
+    .hero .btn {
+      background: #d7a85b;
+      border-color: #d7a85b;
+      color: #173d2b;
+    }
+
+    .hero .btn:hover {
+      background: #efc878;
+      border-color: #efc878;
+    }
+
+    /* =========================
+       FEATURED
+    ========================== */
+
+    .featured {
+      padding: 90px 0;
+      background: #fff;
+    }
+
+    .drink-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .drink-card {
+      background: #f7f3ed;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .drink-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .drink-image {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .drink-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .drink-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .drink-info {
+      padding: 22px;
+    }
+
+    .drink-info h3 {
+      color: #173d2b;
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    .drink-info p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .price {
+      color: #006241;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       STORY
+    ========================== */
+
+    .story {
+      padding: 100px 0;
+      background: #e9dfcf;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .story-image {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 20px 20px 0 #006241;
+    }
+
+    .story-image img {
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .story-content span {
+      color: #006241;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .story-content h2 {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      color: #173d2b;
+      margin: 15px 0 20px;
+    }
+
+    .story-content p {
+      color: #555;
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       MENU
+    ========================== */
+
+    .menu-section {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px 60px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .menu-item h3 {
+      color: #173d2b;
+      margin-bottom: 4px;
+    }
+
+    .menu-item p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .menu-price {
+      color: #006241;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       OFFER
+    ========================== */
+
+    .offer {
+      padding: 80px 0;
+      background: #006241;
+      color: white;
+    }
+
+    .offer-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .offer h2 {
+      font-family: Georgia, serif;
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    .offer p {
+      color: #dcece5;
+    }
+
+    .offer .btn {
+      background: #fff;
+      color: #006241;
+      border-color: white;
+      white-space: nowrap;
+    }
+
+    .offer .btn:hover {
+      background: #e8f2ed;
+    }
+
+    /* =========================
+       LOCATION
+    ========================== */
+
+    .location {
+      padding: 100px 0;
+      background: #f7f3ed;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .location-image {
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .location-image img {
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .location-content h2 {
+      font-family: Georgia, serif;
+      font-size: 45px;
+      color: #173d2b;
+      margin-bottom: 20px;
+    }
+
+    .location-content p {
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .hours {
+      margin: 25px 0;
+    }
+
+    .hours div {
+      display: flex;
+      justify-content: space-between;
+      max-width: 350px;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #142b21;
+      color: white;
+      padding: 60px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 45px;
+    }
+
+    footer h3 {
+      margin-bottom: 18px;
+    }
+
+    footer p {
+      color: #b9c6c0;
+      font-size: 14px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 10px;
+      color: #b9c6c0;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social a {
+      width: 35px;
+      height: 35px;
+      background: #315144;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .copyright {
+      border-top: 1px solid #315144;
+      padding-top: 25px;
+      text-align: center;
+      color: #9baea5;
+      font-size: 13px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        gap: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .drink-grid,
+      .story-grid,
+      .location-grid,
+      .menu-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-grid,
+      .location-grid {
+        gap: 45px;
+      }
+
+      .story-image img {
+        height: 350px;
+      }
+
+      .offer-box {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: 550px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .story-content h2,
+      .location-content h2,
+      .offer h2 {
+        font-size: 35px;
+      }
+
+      .drink-image {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <header>
+    <nav>
+
+      <a href="#" class="logo">
+        <div class="logo-icon">☕</div>
+        Bean & Chai
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#featured">Drinks</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+        <li><a href="#menu" class="btn">Order Now</a></li>
+      </ul>
+
+      <div class="menu-btn" id="menuBtn">☰</div>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero" id="home">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <span>Freshly brewed every day</span>
+
+        <h1>
+          Where Coffee<br>
+          Meets Chai
+        </h1>
+
+        <p>
+          From smooth handcrafted coffee to rich Hyderabad-style chai,
+          discover your new favorite cup at Bean & Chai.
+        </p>
+
+        <a href="#menu" class="btn">
+          Explore Our Menu
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FEATURED DRINKS
+  ========================== -->
+
+  <section class="featured" id="featured">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Handcrafted Favorites</h2>
+        <p>Made with quality ingredients and plenty of love.</p>
+      </div>
+
+      <div class="drink-grid">
+
+        <div class="drink-card">
+
+          <div class="drink-image">
+            <img
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80"
+              alt="Coffee"
+            >
+          </div>
+
+          <div class="drink-info">
+            <h3>Classic Cappuccino</h3>
+
+            <p>
+              Rich espresso topped with silky steamed milk and foam.
+            </p>
+
+            <div class="price">₹180</div>
+          </div>
+
+        </div>
+
+
+        <div class="drink-card">
+
+          <div class="drink-image">
+            <img
+              src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=900&q=80"
+              alt="Masala Chai"
+            >
+          </div>
+
+          <div class="drink-info">
+            <h3>Hyderabadi Chai</h3>
+
+            <p>
+              Strong, creamy and aromatic chai brewed with traditional spices.
+            </p>
+
+            <div class="price">₹90</div>
+          </div>
+
+        </div>
+
+
+        <div class="drink-card">
+
+          <div class="drink-image">
+            <img
+              src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80"
+              alt="Pastry"
+            >
+          </div>
+
+          <div class="drink-info">
+            <h3>Fresh Bakery</h3>
+
+            <p>
+              Warm pastries and freshly baked treats to pair with your drink.
+            </p>
+
+            <div class="price">From ₹80</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       STORY
+  ========================== -->
+
+  <section class="story" id="story">
+
+    <div class="container">
+
+      <div class="story-grid">
+
+        <div class="story-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=80"
+            alt="Cafe interior"
+          >
+
+        </div>
+
+
+        <div class="story-content">
+
+          <span>Our Story</span>
+
+          <h2>A café built around good conversations.</h2>
+
+          <p>
+            Bean & Chai brings together two beloved café traditions:
+            carefully prepared coffee and the comforting culture of chai.
+          </p>
+
+          <p>
+            We believe a café is more than a place to grab a drink.
+            It is a place to slow down, meet friends, work, celebrate,
+            and create memories.
+          </p>
+
+          <a href="#visit" class="btn">
+            Visit Our Café
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MENU
+  ========================== -->
+
+  <section class="menu-section" id="menu">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>Our Menu</h2>
+
+        <p>
+          Something delicious for every mood.
+        </p>
+
+      </div>
+
+
+      <div class="menu-grid">
+
+        <div class="menu-item">
+          <div>
+            <h3>Espresso</h3>
+            <p>Strong and bold single-shot coffee.</p>
+          </div>
+          <span class="menu-price">₹120</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Americano</h3>
+            <p>Espresso balanced with hot water.</p>
+          </div>
+          <span class="menu-price">₹140</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Cappuccino</h3>
+            <p>Espresso, steamed milk and silky foam.</p>
+          </div>
+          <span class="menu-price">₹180</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Café Latte</h3>
+            <p>Smooth espresso with creamy milk.</p>
+          </div>
+          <span class="menu-price">₹190</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Irani Chai</h3>
+            <p>Creamy traditional chai with a rich finish.</p>
+          </div>
+          <span class="menu-price">₹90</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Masala Chai</h3>
+            <p>Fragrant tea infused with Indian spices.</p>
+          </div>
+          <span class="menu-price">₹80</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Osmania Biscuit</h3>
+            <p>Buttery, slightly salty traditional biscuit.</p>
+          </div>
+          <span class="menu-price">₹60</span>
+        </div>
+
+
+        <div class="menu-item">
+          <div>
+            <h3>Chocolate Croissant</h3>
+            <p>Flaky pastry with a chocolate center.</p>
+          </div>
+          <span class="menu-price">₹150</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       OFFER
+  ========================== -->
+
+  <section class="offer">
+
+    <div class="container">
+
+      <div class="offer-box">
+
+        <div>
+
+          <h2>Chai & Biscuit Combo</h2>
+
+          <p>
+            A warm cup of chai paired with our buttery signature biscuit.
+          </p>
+
+        </div>
+
+        <a href="#menu" class="btn">
+          Order Combo · ₹129
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       VISIT
+  ========================== -->
+
+  <section class="location" id="visit">
+
+    <div class="container">
+
+      <div class="location-grid">
+
+        <div class="location-content">
+
+          <h2>Come Say Hello</h2>
+
+          <p>
+            Find us in the heart of the city, where great coffee,
+            chai and conversations come together.
+          </p>
+
+          <div class="hours">
+
+            <div>
+              <strong>Monday - Friday</strong>
+              <span>7 AM - 10 PM</span>
+            </div>
+
+            <div>
+              <strong>Saturday</strong>
+              <span>7 AM - 11 PM</span>
+            </div>
+
+            <div>
+              <strong>Sunday</strong>
+              <span>8 AM - 10 PM</span>
+            </div>
+
+          </div>
+
+          <a href="#" class="btn">
+            Get Directions
+          </a>
+
+        </div>
+
+
+        <div class="location-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80"
+            alt="Coffee shop"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
