@@ -1,0 +1,625 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3b2922;
+  background: #fffaf5;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+header {
+  background: #3b2118;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  min-height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-icon {
+  font-size: 30px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f4c49a;
+}
+
+.btn {
+  display: inline-block;
+  background: #c87941;
+  color: white !important;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #a95e2e;
+  transform: translateY(-2px);
+}
+
+.menu-btn {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 650px;
+
+  background:
+    linear-gradient(
+      rgba(45, 25, 17, 0.65),
+      rgba(45, 25, 17, 0.65)
+    ),
+    url("https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=80");
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 650px;
+  padding: 80px 0;
+}
+
+.hero-content span {
+  color: #f2c49b;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: 65px;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+.hero p {
+  font-size: 19px;
+  max-width: 600px;
+  margin-bottom: 30px;
+  color: #f5eee9;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title h2 {
+  font-size: 38px;
+  color: #3b2118;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #75655d;
+  font-size: 17px;
+}
+
+
+/* =========================
+   FEATURED DRINKS
+========================= */
+
+.featured {
+  padding: 90px 0;
+  background: #fffaf5;
+}
+
+.drink-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.drink-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+
+  box-shadow: 0 8px 25px rgba(70, 40, 20, 0.1);
+
+  transition: 0.3s;
+}
+
+.drink-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(70, 40, 20, 0.18);
+}
+
+.drink-image {
+  height: 250px;
+  overflow: hidden;
+}
+
+.drink-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.drink-card:hover .drink-image img {
+  transform: scale(1.05);
+}
+
+.drink-info {
+  padding: 25px;
+}
+
+.drink-info h3 {
+  color: #3b2118;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.drink-info p {
+  color: #75655d;
+  margin-bottom: 18px;
+}
+
+.price {
+  color: #b56332;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story {
+  padding: 100px 0;
+  background: #f2e4d5;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-image {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.story-image img {
+  height: 500px;
+  object-fit: cover;
+}
+
+.story-content > span {
+  color: #b56332;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.story-content h2 {
+  font-size: 42px;
+  line-height: 1.2;
+  color: #3b2118;
+  margin: 15px 0 20px;
+}
+
+.story-content p {
+  color: #65554d;
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+
+.story-content .btn {
+  margin-top: 10px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-section {
+  padding: 90px 0;
+  background: #fffaf5;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.menu-item {
+  background: white;
+  padding: 25px;
+
+  border: 1px solid #eaded4;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  transition: 0.3s;
+}
+
+.menu-item:hover {
+  border-color: #c87941;
+  transform: translateY(-3px);
+}
+
+.menu-item h3 {
+  color: #3b2118;
+  margin-bottom: 5px;
+}
+
+.menu-item p {
+  color: #75655d;
+  font-size: 14px;
+}
+
+.menu-price {
+  color: #b56332;
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+
+/* =========================
+   OFFER
+========================= */
+
+.offer {
+  padding: 60px 0;
+  background: #3b2118;
+}
+
+.offer-box {
+  background: #d99b68;
+  border-radius: 20px;
+  padding: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  color: white;
+}
+
+.offer-box h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.offer-box p {
+  font-size: 17px;
+}
+
+.offer-box .btn {
+  background: white;
+  color: #3b2118 !important;
+}
+
+.offer-box .btn:hover {
+  background: #f5eee9;
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+.location {
+  padding: 100px 0;
+  background: #fffaf5;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.location-content h2 {
+  font-size: 42px;
+  color: #3b2118;
+  margin-bottom: 20px;
+}
+
+.location-content > p {
+  color: #75655d;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+.hours {
+  margin-bottom: 30px;
+}
+
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+
+  padding: 12px 0;
+  border-bottom: 1px solid #e5d7cc;
+}
+
+.hours strong {
+  color: #3b2118;
+}
+
+.hours span {
+  color: #75655d;
+}
+
+.location-image {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.location-image img {
+  height: 450px;
+  object-fit: cover;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #24140f;
+  color: #e8dcd4;
+  padding: 70px 0 25px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-grid h3 {
+  color: white;
+  margin-bottom: 18px;
+  font-size: 20px;
+}
+
+.footer-grid p {
+  color: #bcaea5;
+  max-width: 320px;
+}
+
+.footer-grid ul {
+  list-style: none;
+}
+
+.footer-grid li {
+  margin-bottom: 10px;
+  color: #bcaea5;
+}
+
+.footer-grid a:hover {
+  color: #f0b987;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.social a {
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid #72584b;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+}
+
+.copyright {
+  border-top: 1px solid #4b3329;
+  margin-top: 50px;
+  padding-top: 25px;
+
+  text-align: center;
+  color: #99877d;
+  font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    left: 0;
+
+    width: 100%;
+
+    background: #3b2118;
+
+    flex-direction: column;
+    align-items: center;
+
+    padding: 25px;
+
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 50px;
+  }
+
+  .drink-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-grid,
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 600px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section-title h2 {
+    font-size: 30px;
+  }
+
+  .drink-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-content h2,
+  .location-content h2 {
+    font-size: 32px;
+  }
+
+  .story-image img,
+  .location-image img {
+    height: 350px;
+  }
+
+  .offer-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hours div {
+    max-width: 100%;
+  }
+}
